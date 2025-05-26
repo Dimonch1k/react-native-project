@@ -1,35 +1,43 @@
+import { useThemeStore } from '@/stores/theme.store'
+
 import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
-import 'react-native-reanimated'
 
-import { COLORS } from '@/constants/colors.constant'
-import { useTheme } from '@/hooks/useTheme'
-import { ThemeProvider } from '@/providers/ThemeProvider'
+import { useEffect } from 'react'
+import { View } from 'react-native'
+import 'react-native-reanimated'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default function RootLayout() {
-	const { theme } = useTheme()
+	const hydrate = useThemeStore(state => state.hydrate)
+	const isLight = useThemeStore(state => state.isLight)
+
+	const insets = useSafeAreaInsets()
+
+	useEffect(() => {
+		hydrate()
+	}, [])
+
 	const [loaded] = useFonts({
 		SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
 	})
 
-	if (!loaded) {
-		// Async font loading only occurs in development.
-		return null
-	}
-
+	if (!loaded) return null
 	return (
-		<ThemeProvider>
+		<>
+			<View
+				style={{
+					height: insets.top,
+					backgroundColor: isLight ? '#f5f5f5' : '#14171F',
+				}}
+			/>
+			<StatusBar style={isLight ? 'dark' : 'light'} translucent />
+
 			<Stack screenOptions={{ headerShown: false }}>
 				<Stack.Screen name='(tabs)' />
 				<Stack.Screen name='+not-found' />
 			</Stack>
-			<StatusBar
-				style={theme === 'dark' ? 'light' : 'dark'}
-				backgroundColor={
-					theme === 'dark' ? COLORS.dark.background : COLORS.light.background
-				}
-			/>
-		</ThemeProvider>
+		</>
 	)
 }

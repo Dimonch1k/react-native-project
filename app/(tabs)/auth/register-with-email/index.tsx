@@ -1,50 +1,42 @@
-import { StyleSheet, Text, View } from 'react-native'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import PrivacyPolicyText from '@/components/auth/PrivacyPolicyText'
+import { ThemedSafeAreaView } from '@/components/theme/ThemedSafeAreaView'
+import { Button } from '@/components/ui/buttons/Button'
+import { GoBackHeading } from '@/components/ui/heading/GoBackHeading'
+import { InputField } from '@/components/ui/inputs/InputField'
 
-import { Stack } from 'expo-router'
+import { StyleSheet, View } from 'react-native'
 
-export default function RegisterScreen() {
+export default function RegisterWithEmailScreen() {
 	return (
-		<SafeAreaView style={styles.container}>
-			<Stack.Screen options={{ headerShown: false }} />
-			<View>
-				<Text style={styles.title}>
-					Enter to get closer to Bosedu and explore more
-				</Text>
+		<ThemedSafeAreaView>
+			<GoBackHeading title='Register with Email' />
+			<View style={styles.buttonsContainer}>
+				<InputField placeholder='Full name' />
+				<InputField placeholder='Email' />
+				<InputField placeholder='Password' secureTextEntry />
+				<InputField placeholder='Re-enter Password' secureTextEntry />
 			</View>
-		</SafeAreaView>
+
+			{/* Register Button */}
+			<Button
+				title='Register Now'
+				color='#fff'
+				backgroundColor='#1668E3'
+				onPress={() => {
+					console.log('Account successfully registered')
+				}}
+			/>
+			{/* Privacy Policy */}
+			<PrivacyPolicyText />
+		</ThemedSafeAreaView>
 	)
 }
 
 const styles = StyleSheet.create({
-	container: {
-		paddingHorizontal: 33,
-	},
-	title: {
-		fontSize: 22,
-		textAlign: 'center',
-		marginBottom: 20,
-	},
-	button: {
-		backgroundColor: '#007BFF',
-		paddingVertical: 12,
-		paddingHorizontal: 20,
-		borderRadius: 8,
+	buttonsContainer: {
+		flexDirection: 'column',
 		alignItems: 'center',
-		marginTop: 20,
-	},
-	buttonContent: {
-		flexDirection: 'row',
-		alignItems: 'center',
-	},
-	buttonIcon: {
-		width: 24,
-		height: 24,
-		marginRight: 10,
-	},
-	buttonTitle: {
-		color: '#FFFFFF',
-		fontSize: 16,
-		fontWeight: 'bold',
+		justifyContent: 'center',
+		gap: 10,
 	},
 })

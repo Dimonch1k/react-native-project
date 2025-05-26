@@ -25,7 +25,7 @@ export default function EventsScreen ()
 
   return (
     <ThemedSafeAreaView>
-      <Heading title="Events" rightChildren={ buttons() } underline/>
+      <Heading title="Event" rightChildren={ buttons() } underline/>
     </ThemedSafeAreaView>
   )
 }

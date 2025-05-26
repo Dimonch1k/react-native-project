@@ -1,11 +1,13 @@
 import { ThemedSafeAreaView } from '@/components/theme/ThemedSafeAreaView'
-import React                  from 'react'
-import { Text }               from 'react-native'
+import { GoBackHeading }      from '@/components/ui/heading/GoBackHeading'
 
-export default function CartScreen() {
+import React from 'react'
+
+export default function FavoriteScreen ()
+{
   return (
     <ThemedSafeAreaView>
-      <Text>Cart Screen</Text>
+      <GoBackHeading title="Favorite"/>
     </ThemedSafeAreaView>
   )
 }

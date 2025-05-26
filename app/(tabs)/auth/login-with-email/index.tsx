@@ -1,94 +1,54 @@
+import PrivacyPolicyText from '@/components/auth/PrivacyPolicyText'
 import { ThemedSafeAreaView } from '@/components/theme/ThemedSafeAreaView'
 import { ThemedText } from '@/components/theme/ThemedText'
-import { Button }     from '@/components/ui/buttons/Button'
-import { StyledText } from '@/components/ui/text/Text'
+import { Button } from '@/components/ui/buttons/Button'
+import { GoBackHeading } from '@/components/ui/heading/GoBackHeading'
+import { InputField } from '@/components/ui/inputs/InputField'
 
-import { COLORS }       from '@/constants/colors.constant'
-import { loginButtons } from '@/data/_login-buttons.data'
-import { useTheme }     from '@/hooks/useTheme'
-
-import { Stack }            from 'expo-router'
-import React                from 'react'
+import Ionicons from '@expo/vector-icons/Ionicons'
+import { Link } from 'expo-router'
 import { StyleSheet, View } from 'react-native'
 
-export default function LoginScreen ()
-{
-  const { theme } = useTheme()
+export default function LoginWithEmailScreen() {
+	return (
+		<ThemedSafeAreaView>
+			<GoBackHeading title='Login with Email' />
+			<View style={styles.buttonsContainer}>
+				<InputField placeholder='Email' />
+				<InputField placeholder='Password' secureTextEntry />
+			</View>
 
-  const color = theme === 'light' ? COLORS.light.text : COLORS.dark.text
+			{/* Forgot password Link */}
+			<Link href={'/auth/forgot-password'}>
+				<ThemedText
+					type='link'
+					style={{ textAlign: 'center', fontWeight: 'bold' }}
+				>
+					Forgot Password?
+				</ThemedText>
+			</Link>
 
-  return (
-    <ThemedSafeAreaView style={ [ styles.container ] }>
-      <Stack.Screen options={ { headerShown: false } }/>
-
-      <View style={ styles.inner }>
-        <ThemedText>
-          <StyledText style={ [ styles.title, { color } ] }>
-            Enter to get closer to Bosedu and explore more
-          </StyledText>
-        </ThemedText>
-
-        <View style={ styles.buttonsContainer }>
-          { loginButtons.map( ( button, index ) => (
-            <Button
-              key={ index }
-              title={ button.title }
-              icon={ button.icon }
-              color={ button.color }
-              onPress={ () => console.log( `${ button.title } clicked` ) }
-            />
-          ) ) }
-        </View>
-
-        <StyledText
-          color={ color }
-          fontSize={ 14 }
-          fontWeight="400"
-          textAlign="center"
-        >
-          By registering, you agree to the{ ' ' }
-          <StyledText color={ color } fontWeight="semibold">
-            Terms of Service
-          </StyledText>
-          ,{ ' ' }
-          <StyledText color={ color } fontWeight="semibold">
-            Privacy Policy
-          </StyledText>{ ' ' }
-          and{ ' ' }
-          <StyledText color={ color } fontWeight="semibold">
-            Cookie Policy
-          </StyledText>
-          .
-        </StyledText>
-      </View>
-    </ThemedSafeAreaView>
-  )
+			{/* Login Button */}
+			<Button
+				title='Login'
+				ionicIcon={<Ionicons name='log-in-outline' size={24} color='#fff' />}
+				color='#fff'
+				backgroundColor='#1668E3'
+				onPress={() => {
+					console.log('You successfully logged into your account')
+				}}
+			/>
+			{/* Privacy Policy */}
+			<PrivacyPolicyText />
+		</ThemedSafeAreaView>
+	)
 }
 
-const styles = StyleSheet.create( {
-  container: {
-    flex: 1
-  },
-  inner: {
-    flex: 1,
-    paddingHorizontal: 33,
-    gap: 38,
-    justifyContent: 'center'
-  },
-  title: {
-    fontSize: 22,
-    textAlign: 'center',
-    marginBottom: 30,
-    fontWeight: 'semibold'
-  },
-  buttonsContainer: {
-    flexDirection: 'column',
-    gap: 12,
-    width: '100%'
-  },
-  privacyPolicy: {
-    textAlign: 'center',
-    marginTop: 30,
-    fontSize: 14
-  }
-} )
+const styles = StyleSheet.create({
+	buttonsContainer: {
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'center',
+		gap: 10,
+	},
+})

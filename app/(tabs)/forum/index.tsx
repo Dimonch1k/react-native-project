@@ -1,11 +1,11 @@
 import { ThemedSafeAreaView } from '@/components/theme/ThemedSafeAreaView'
-import React                  from 'react'
-import { Text }               from 'react-native'
+import { Heading }            from '@/components/ui/heading/Heading'
 
-export default function ForumsScreen() {
-	return (
-		<ThemedSafeAreaView>
-			<Text>Forums Screen</Text>
-		</ThemedSafeAreaView>
-	)
+export default function ForumsScreen ()
+{
+  return (
+    <ThemedSafeAreaView>
+      <Heading title={ 'Forum' } underline/>
+    </ThemedSafeAreaView>
+  )
 }
