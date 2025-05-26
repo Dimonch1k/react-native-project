@@ -12,6 +12,7 @@ export const COLORS = {
 		tabIconDefault: '#7A7A7A',
 		tabIconSelected: tintColorLight,
 		backgroundTab: white,
+		statusBar: white,
 	},
 	dark: {
 		text: '#ECEDEE',
@@ -21,5 +22,6 @@ export const COLORS = {
 		tabIconDefault: '#7A7A7A',
 		tabIconSelected: tintColorDark,
 		backgroundTab: '#14171F',
+		statusBar: '#14171F',
 	},
 }

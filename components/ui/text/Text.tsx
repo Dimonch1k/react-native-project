@@ -1,41 +1,41 @@
-import React from 'react'
+import { ThemedText } from '@/components/theme/ThemedText'
+
 import {
-	TextProps as RNTextProps,
-	StyleSheet,
-	Text,
-	TextStyle,
-} from 'react-native'
+  TextProps as RNTextProps,
+  StyleSheet,
+  TextStyle
+}            from 'react-native'
+import React from 'react'
 
-interface StyledTextProps extends RNTextProps {
-	fontWeight?: TextStyle['fontWeight']
-	fontSize?: number
-	color?: string
-	textAlign?: TextStyle['textAlign']
-
-	children: React.ReactNode
+interface StyledTextProps extends RNTextProps
+{
+  fontWeight?: TextStyle['fontWeight']
+  fontSize?: number
+  textAlign?: TextStyle['textAlign']
+  children: React.ReactNode
 }
 
-export function StyledText({
-	fontWeight = '400',
-	fontSize = 16,
-	color = '#000',
-	textAlign = 'left',
-	style,
-	children,
-	...rest
-}: StyledTextProps) {
-	return (
-		<Text
-			style={[styles.text, { fontWeight, fontSize, color, textAlign }, style]}
-			{...rest}
-		>
-			{children}
-		</Text>
-	)
+export function StyledText ( {
+  fontWeight = '400',
+  fontSize,
+  textAlign = 'left',
+  style,
+  children,
+  ...rest
+}: StyledTextProps )
+{
+  return (
+    <ThemedText
+      style={ [ styles.text, { fontWeight, fontSize, textAlign }, style ] }
+      { ...rest }
+    >
+      { children }
+    </ThemedText>
+  )
 }
 
-const styles = StyleSheet.create({
-	text: {
-		// Add defaults or shared styles here if needed
-	},
-})
+const styles = StyleSheet.create( {
+  text: {
+    // Add defaults or shared styles here if needed
+  }
+} )

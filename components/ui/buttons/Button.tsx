@@ -1,38 +1,45 @@
+import { ThemedText } from '@/components/theme/ThemedText'
 import React from 'react'
 import {
 	Image,
 	ImageSourcePropType,
 	StyleSheet,
-	Text,
 	TouchableOpacity,
 	View,
 } from 'react-native'
 
-type LoginButtonProps = {
+type ButtonProps = {
 	title: string
-	icon: ImageSourcePropType
-	color: string
+	icon?: ImageSourcePropType
+	ionicIcon?: React.ReactNode
+	color?: string
+	backgroundColor?: string
 	onPress?: () => void
 }
 
-export const LoginButton: React.FC<LoginButtonProps> = ({
+export const Button: React.FC<ButtonProps> = ({
 	title,
 	icon,
+	ionicIcon,
 	color,
+	backgroundColor,
 	onPress,
 }) => {
 	return (
 		<TouchableOpacity
-			style={[styles.button, { backgroundColor: color }]}
+			style={[styles.button, { backgroundColor }]}
 			activeOpacity={0.7}
 			onPress={onPress}
 		>
 			<View style={styles.buttonContent}>
 				<View style={styles.leftIconWrapper}>
-					<Image source={icon} style={styles.buttonIcon} />
+					{icon && <Image source={icon} style={styles.buttonIcon} />}
+					{ionicIcon}
 				</View>
 				<View style={styles.centerTextWrapper}>
-					<Text style={[styles.buttonTitle]}>{title}</Text>
+					<ThemedText color={color} type='defaultSemiBold'>
+						{title}
+					</ThemedText>
 				</View>
 				<View style={styles.rightFiller} />
 			</View>
@@ -53,7 +60,7 @@ const styles = StyleSheet.create({
 		paddingVertical: 13,
 	},
 	leftIconWrapper: {
-		width: 24,
+		width: 32,
 		alignItems: 'flex-start',
 		justifyContent: 'center',
 	},
@@ -67,11 +74,5 @@ const styles = StyleSheet.create({
 	buttonIcon: {
 		width: 24,
 		height: 24,
-	},
-	buttonTitle: {
-		fontSize: 16,
-		fontWeight: '600',
-		textAlign: 'center',
-		color: '#fff',
 	},
 })

@@ -1,28 +1,24 @@
+import { useColor } from '@/hooks/useColor'
+
 import { StyleSheet, Text, type TextProps } from 'react-native'
 
-import { COLORS } from '@/constants/colors.constant'
-import { useTheme } from '@/hooks/useTheme'
-
 export type ThemedTextProps = TextProps & {
-	lightColor?: string
-	darkColor?: string
 	type?: 'default' | 'title' | 'defaultSemiBold' | 'subtitle' | 'link'
+	color?: string
 }
 
 export function ThemedText({
 	style,
-	lightColor,
-	darkColor,
+	color,
 	type = 'default',
 	...rest
 }: ThemedTextProps) {
-	const { theme } = useTheme()
-	const color = theme === 'light' ? COLORS.light.text : COLORS.dark.text
+	const { textColor } = useColor()
 
 	return (
 		<Text
 			style={[
-				{ color },
+				{ color: color ? color : textColor },
 				type === 'default' ? styles.default : undefined,
 				type === 'title' ? styles.title : undefined,
 				type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,
@@ -38,24 +34,19 @@ export function ThemedText({
 const styles = StyleSheet.create({
 	default: {
 		fontSize: 16,
-		lineHeight: 24,
 	},
 	defaultSemiBold: {
 		fontSize: 16,
-		lineHeight: 24,
 		fontWeight: '600',
 	},
 	title: {
-		fontSize: 32,
-		fontWeight: 'bold',
-		lineHeight: 32,
+		fontSize: 24,
 	},
 	subtitle: {
 		fontSize: 20,
 		fontWeight: 'bold',
 	},
 	link: {
-		lineHeight: 30,
 		fontSize: 16,
 		color: '#0a7ea4',
 	},

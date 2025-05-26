@@ -1,6 +1,5 @@
-import { COLORS } from '@/constants/colors.constant'
-import { useTheme } from '@/hooks/useTheme'
-import { type ViewProps } from 'react-native'
+import { useColor } from '@/hooks/useColor'
+import { StyleSheet, type ViewProps } from 'react-native'
 
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -15,14 +14,21 @@ export function ThemedSafeAreaView({
 	darkColor,
 	...otherProps
 }: ThemedSafeAreaViewProps) {
-	const { theme } = useTheme()
-	const backgroundColor =
-		theme === 'light' ? COLORS.light.background : COLORS.dark.background
+	const { backgroundColor } = useColor()
 
 	return (
 		<SafeAreaView
-			style={[{ flex: 1, backgroundColor }, style]}
+			style={[styles.inner, { backgroundColor }, style]}
 			{...otherProps}
 		/>
 	)
 }
+
+const styles = StyleSheet.create({
+	inner: {
+		flex: 1,
+		paddingHorizontal: 33,
+		flexDirection: 'column',
+		gap: 28,
+	},
+})
