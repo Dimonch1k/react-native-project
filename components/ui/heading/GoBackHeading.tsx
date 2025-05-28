@@ -1,6 +1,6 @@
 import { Heading } from '@/components/ui/heading/Heading'
 import { useColor } from '@/hooks/useColor'
-import Ionicons from '@expo/vector-icons/Ionicons'
+import { Ionicons } from '@expo/vector-icons'
 
 import { useRouter } from 'expo-router'
 import React from 'react'

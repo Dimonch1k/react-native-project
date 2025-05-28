@@ -1,5 +1,5 @@
 import { LoginOptions } from '@/components/auth/LoginOptions'
-import PrivacyPolicyText from '@/components/auth/PrivacyPolicyText'
+import { PrivacyPolicyText } from '@/components/auth/PrivacyPolicyText'
 import { ThemedSafeAreaView } from '@/components/theme/ThemedSafeAreaView'
 import { ThemedText } from '@/components/theme/ThemedText'
 import { StyledText } from '@/components/ui/text/Text'
@@ -22,7 +22,9 @@ export default function LoginScreen() {
 				<StyledText fontSize={16} textAlign='center'>
 					Register using Email{' '}
 					<Link href={'/auth/register-with-email'}>
-						<StyledText>Here!</StyledText>
+						<StyledText style={{ color: '#014BBA' }} fontWeight='bold'>
+							Here!
+						</StyledText>
 					</Link>
 				</StyledText>
 

@@ -5,7 +5,7 @@ interface PrivacyPolicyTextProps {
 	bottom?: number
 }
 
-export default function PrivacyPolicyText({
+export function PrivacyPolicyText({
 	position = 'relative',
 	bottom = 0,
 }: PrivacyPolicyTextProps) {
@@ -14,12 +14,21 @@ export default function PrivacyPolicyText({
 			fontSize={14}
 			fontWeight='400'
 			textAlign='center'
-			style={{ position, bottom }}
+			style={{ position, bottom, color: '#757678' }}
 		>
 			By registering, you agree to the{' '}
-			<StyledText fontWeight='bold'>Terms of Service</StyledText>,{' '}
-			<StyledText fontWeight='bold'>Privacy Policy</StyledText> and{' '}
-			<StyledText fontWeight='bold'>Cookie Policy</StyledText>.
+			<StyledText fontWeight='bold' style={{ color: '#757678' }}>
+				Terms of Service
+			</StyledText>
+			,{' '}
+			<StyledText fontWeight='bold' style={{ color: '#757678' }}>
+				Privacy Policy
+			</StyledText>{' '}
+			and{' '}
+			<StyledText fontWeight='bold' style={{ color: '#757678' }}>
+				Cookie Policy
+			</StyledText>
+			.
 		</StyledText>
 	)
 }

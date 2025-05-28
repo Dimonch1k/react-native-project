@@ -1,11 +1,11 @@
-import PrivacyPolicyText from '@/components/auth/PrivacyPolicyText'
+import { PrivacyPolicyText } from '@/components/auth/PrivacyPolicyText'
 import { ThemedSafeAreaView } from '@/components/theme/ThemedSafeAreaView'
-import { ThemedText } from '@/components/theme/ThemedText'
 import { Button } from '@/components/ui/buttons/Button'
 import { GoBackHeading } from '@/components/ui/heading/GoBackHeading'
 import { InputField } from '@/components/ui/inputs/InputField'
+import { StyledText } from '@/components/ui/text/Text'
 
-import Ionicons from '@expo/vector-icons/Ionicons'
+import { Ionicons } from '@expo/vector-icons'
 import { Link } from 'expo-router'
 import { StyleSheet, View } from 'react-native'
 
@@ -20,12 +20,13 @@ export default function LoginWithEmailScreen() {
 
 			{/* Forgot password Link */}
 			<Link href={'/auth/forgot-password'}>
-				<ThemedText
-					type='link'
-					style={{ textAlign: 'center', fontWeight: 'bold' }}
+				<StyledText
+					textAlign='center'
+					fontWeight='bold'
+					style={{ color: '#014BBA' }}
 				>
 					Forgot Password?
-				</ThemedText>
+				</StyledText>
 			</Link>
 
 			{/* Login Button */}

@@ -1,6 +1,7 @@
 import { useColor } from '@/hooks/useColor'
 import { useThemeStore } from '@/stores/theme.store'
-import React from 'react'
+
+import React, { useState } from 'react'
 import { StyleSheet, TextInput, TextInputProps, View } from 'react-native'
 
 interface InputFieldProps extends TextInputProps {
@@ -16,12 +17,21 @@ export const InputField: React.FC<InputFieldProps> = ({
 
 	const placeholderColor = isLight ? '#666666' : '#AAAAAA'
 
+	const [isFocused, setIsFocused] = useState(false)
+
 	return (
-		<View style={[styles.inputWrapper, { borderColor: '#666666' }]}>
+		<View
+			style={[
+				styles.inputWrapper,
+				{ borderColor: isFocused ? '#014BBA' : '#666666' },
+			]}
+		>
 			<TextInput
 				style={[styles.input, { color: textColor }]}
 				placeholder={placeholder}
 				placeholderTextColor={placeholderColor}
+				onFocus={() => setIsFocused(true)}
+				onBlur={() => setIsFocused(false)}
 				{...props}
 			/>
 		</View>

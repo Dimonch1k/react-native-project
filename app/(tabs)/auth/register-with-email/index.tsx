@@ -1,4 +1,4 @@
-import PrivacyPolicyText from '@/components/auth/PrivacyPolicyText'
+import { PrivacyPolicyText } from '@/components/auth/PrivacyPolicyText'
 import { ThemedSafeAreaView } from '@/components/theme/ThemedSafeAreaView'
 import { Button } from '@/components/ui/buttons/Button'
 import { GoBackHeading } from '@/components/ui/heading/GoBackHeading'
