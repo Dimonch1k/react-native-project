@@ -29,13 +29,13 @@ export function EventCard({
 	const { backgroundTab } = useColor()
 	const isLight = useThemeStore(state => state.isLight)
 
-	console.log(title)
-
 	return (
 		<View style={[styles.card, { backgroundColor: backgroundTab }]}>
 			<View style={styles.imageWrapper}>
 				<Image source={{ uri: image }} style={styles.image} />
 			</View>
+
+			{/* Tag */}
 			<View
 				style={[
 					styles.tag,
@@ -48,7 +48,15 @@ export function EventCard({
 			</View>
 
 			<View style={styles.content}>
-				<StyledText fontWeight='bold'>{title}</StyledText>
+				<StyledText
+					fontWeight='bold'
+					numberOfLines={1}
+					style={{
+						overflow: 'hidden',
+					}}
+				>
+					{title}
+				</StyledText>
 
 				<View style={styles.priceWrapper}>
 					<StyledText

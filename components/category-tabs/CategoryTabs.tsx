@@ -33,7 +33,7 @@ export const CategoryTabs = ({ tabs }: CategoryTabsProps) => {
 						{selected === tab && <View style={styles.tabUnderline} />}
 					</TouchableOpacity>
 				))}
-				<Ionicons name='settings' size={16} color={textColor} />
+				<Ionicons name='options' size={16} color={textColor} />
 			</View>
 			<View style={styles.underline} />
 		</View>

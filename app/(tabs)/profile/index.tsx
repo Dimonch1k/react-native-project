@@ -13,11 +13,18 @@ import {
 	TouchableOpacity,
 	View,
 } from 'react-native'
-import { profileMenuItems } from './profile.data'
 
 export default function ProfileScreen() {
 	const toggleTheme = useThemeStore(state => state.toggleTheme)
 	const isLight = useThemeStore(state => state.isLight)
+
+	const profileMenuItems = [
+		'Edit Profile',
+		'Product Purchased',
+		'Transaction History',
+		'Contact Us',
+		'Settings',
+	]
 
 	const { textColor } = useColor()
 
