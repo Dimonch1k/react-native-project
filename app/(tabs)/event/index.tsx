@@ -5,13 +5,15 @@ import { FlatList, StyleSheet } from 'react-native'
 
 import { EventCard } from '@/components/event/event-card/EventCard'
 import { eventCardsData } from '@/components/event/event-cards.data'
-import { EventFilters } from '@/components/event/EventFilters'
 import { ThemedSafeAreaView } from '@/components/theme/ThemedSafeAreaView'
+import { FilterButtons } from '@/components/ui/buttons/FilterButton'
 import { Heading } from '@/components/ui/heading/Heading'
 import { useColor } from '@/hooks/useColor'
 
 export default function EventScreen() {
 	const { textColor } = useColor()
+
+	const filters = ['New', 'Online', 'Offline', 'Free']
 
 	const buttons = () => (
 		<>
@@ -28,12 +30,13 @@ export default function EventScreen() {
 		<ThemedSafeAreaView>
 			<Heading title='Event' rightChildren={buttons()} underline />
 
-			<EventFilters />
+			<FilterButtons filters={filters} />
 
 			<FlatList
 				data={eventCardsData}
 				keyExtractor={item => item.id}
 				contentContainerStyle={styles.listContainer}
+				showsVerticalScrollIndicator={false}
 				renderItem={({ item }) => (
 					<EventCard
 						isOnline={item.isOnline}

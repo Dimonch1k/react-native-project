@@ -8,9 +8,10 @@ import { Pressable, View } from 'react-native'
 
 interface GoBackHeadingProps {
 	title?: string
+	rightChildren: React.ReactNode
 }
 
-export const GoBackHeading: React.FC<GoBackHeadingProps> = ({ title }) => {
+export function GoBackHeading({ title, rightChildren }: GoBackHeadingProps) {
 	const { back } = useRouter()
 	const { textColor } = useColor()
 
@@ -27,6 +28,7 @@ export const GoBackHeading: React.FC<GoBackHeadingProps> = ({ title }) => {
 			title={title}
 			titleType='default'
 			leftChildren={goBackButton()}
+			rightChildren={rightChildren}
 			underline
 		/>
 	)

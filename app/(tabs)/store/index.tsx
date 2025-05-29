@@ -1,12 +1,22 @@
+import { storeTabs } from '@/components/category-tabs/category-tabs.data'
+import { CategoryTabs } from '@/components/category-tabs/CategoryTabs'
 import { SearchBar } from '@/components/store/SearchBar'
+import {
+	storeCourseCards,
+	storeModulCards,
+} from '@/components/store/store.data'
+import { StoreSection } from '@/components/store/StoreSection'
 import { ThemedSafeAreaView } from '@/components/theme/ThemedSafeAreaView'
 import { Heading } from '@/components/ui/heading/Heading'
 import { useColor } from '@/hooks/useColor'
 import { Ionicons } from '@expo/vector-icons'
-import { Link } from 'expo-router'
+import { Link, useRouter } from 'expo-router'
+import { ScrollView, View } from 'react-native'
 
 export default function StoreScreen() {
 	const { textColor } = useColor()
+
+	const router = useRouter()
 
 	const buttons = () => (
 		<>
@@ -26,6 +36,30 @@ export default function StoreScreen() {
 				rightChildren={buttons()}
 				underline
 			/>
+
+			<CategoryTabs tabs={storeTabs} />
+
+			<ScrollView showsVerticalScrollIndicator={false}>
+				<View style={{ flexDirection: 'column', gap: 32, paddingBottom: 32 }}>
+					<StoreSection
+						title='Modul'
+						onClickMore={() => router.push('/')}
+						cards={storeModulCards}
+					/>
+
+					<StoreSection
+						title='Course'
+						onClickMore={() => router.push('/(tabs)/store/course')}
+						cards={storeCourseCards}
+					/>
+
+					<StoreSection
+						title='Bootcamp'
+						onClickMore={() => router.push('/')}
+						cards={storeCourseCards}
+					/>
+				</View>
+			</ScrollView>
 		</ThemedSafeAreaView>
 	)
 }

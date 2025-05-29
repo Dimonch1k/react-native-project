@@ -4,8 +4,6 @@ import { Ionicons } from '@expo/vector-icons'
 import React from 'react'
 import { StyleSheet, TextInput, View } from 'react-native'
 
-interface SearchBarProps {}
-
 export function SearchBar() {
 	const { textColor } = useColor()
 
