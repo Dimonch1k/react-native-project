@@ -7,7 +7,7 @@ import { Link } from 'expo-router'
 import { View } from 'react-native'
 
 export default function HomeScreen() {
-	const { textColor } = useColor()
+	const { textColor, backgroundTab } = useColor()
 
 	const buttons = () => (
 		<View style={{ flexDirection: 'row', gap: 16 }}>
@@ -23,6 +23,15 @@ export default function HomeScreen() {
 	return (
 		<ThemedSafeAreaView>
 			<Heading title={'Home'} underline rightChildren={buttons()} />
+
+			{/* <Button
+				title='Transaction History'
+				color='#fff'
+				backgroundColor={backgroundTab}
+				onPress={() => {
+					router.push('/transaction')
+				}}
+			/> */}
 		</ThemedSafeAreaView>
 	)
 }

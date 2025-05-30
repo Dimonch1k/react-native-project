@@ -77,6 +77,12 @@ export default function TabLayout() {
 					),
 				}}
 			/>
+			{/* <Tabs.Screen
+				name='transaction-history/index'
+				options={{
+					href: null,
+				}}
+			/> */}
 			{/* Heading */}
 			<Tabs.Screen
 				name='cart/index'

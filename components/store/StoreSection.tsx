@@ -28,9 +28,10 @@ export function StoreSection({ title, onClickMore, cards }: StoreSectionProps) {
 
 			{/* Cards */}
 			<View style={styles.cards}>
-				{cards.map((card, index) => (
+				{cards.map(card => (
 					<StoreCard
-						key={index}
+						key={card.id}
+						id={card.id}
 						title={card.title}
 						isFree={card.isFree}
 						discount={card.discount}
@@ -41,7 +42,6 @@ export function StoreSection({ title, onClickMore, cards }: StoreSectionProps) {
 						rightFooter={card.rightFooter}
 					/>
 				))}
-				))
 			</View>
 		</View>
 	)

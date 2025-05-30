@@ -63,7 +63,6 @@ export const ForumCard = ({
 							<StyledText style={[styles.username, { color: textColor }]}>
 								{username}
 							</StyledText>
-							<View style={styles.badge} />
 						</View>
 						<StyledText style={[styles.userTitle, { color: textColor }]}>
 							{userTitle}

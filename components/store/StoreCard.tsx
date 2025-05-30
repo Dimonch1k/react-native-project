@@ -1,9 +1,18 @@
 import { StyledText } from '@/components/ui/text/Text'
 import { useColor } from '@/hooks/useColor'
+import { useCartStore } from '@/stores/cart.store'
 import React from 'react'
-import { Image, StyleSheet, View } from 'react-native'
+import {
+	Alert,
+	Image,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from 'react-native'
 
 export interface StoreCardProps {
+	id: string
 	title: string
 	isFree?: boolean
 	discount?: number
@@ -15,6 +24,7 @@ export interface StoreCardProps {
 }
 
 export function StoreCard({
+	id,
 	title,
 	isFree,
 	discount,
@@ -25,9 +35,34 @@ export function StoreCard({
 	rightFooter,
 }: StoreCardProps) {
 	const { backgroundTab } = useColor()
+	const { addItem } = useCartStore()
+
+	const handleAddToCart = async () => {
+		try {
+			await addItem({
+				id,
+				title,
+				newPrice: newPrice || 0,
+				oldPrice: oldPrice || 0,
+				image: image || '',
+				isFree,
+				discount,
+			})
+
+			Alert.alert('Added to Cart', `${title} has been added to your cart!`, [
+				{ text: 'OK' },
+			])
+		} catch (error) {
+			Alert.alert('Error', 'Failed to add item to cart')
+		}
+	}
 
 	return (
-		<View style={[styles.card, { backgroundColor: backgroundTab }]}>
+		<TouchableOpacity
+			style={[styles.card, { backgroundColor: backgroundTab }]}
+			onPress={handleAddToCart}
+			activeOpacity={0.8}
+		>
 			<View style={styles.imageWrapper}>
 				<Image source={{ uri: image }} style={styles.image} />
 			</View>
@@ -88,10 +123,10 @@ export function StoreCard({
 					fontWeight='bold'
 					style={[styles.footerText, { color: '#1668E3' }]}
 				>
-					{rightFooter}
+					<Text>{rightFooter}</Text>
 				</StyledText>
 			</View>
-		</View>
+		</TouchableOpacity>
 	)
 }
 

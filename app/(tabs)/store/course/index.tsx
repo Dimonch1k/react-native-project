@@ -32,9 +32,10 @@ export default function StoreScreen() {
 			<ScrollView showsVerticalScrollIndicator={false}>
 				<View style={{ flexDirection: 'column', gap: 32, paddingBottom: 32 }}>
 					<View style={styles.listContainer}>
-						{courseCards.map((card, index) => (
+						{courseCards.map(card => (
 							<StoreCard
-								key={index}
+								key={card.id}
+								id={card.id}
 								title={card.title}
 								isFree={card.isFree}
 								discount={card.discount}
@@ -45,7 +46,6 @@ export default function StoreScreen() {
 								rightFooter={card.rightFooter}
 							/>
 						))}
-						))
 					</View>
 				</View>
 			</ScrollView>
