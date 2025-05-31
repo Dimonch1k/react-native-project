@@ -1,13 +1,10 @@
-import { storeTabs } from '@/components/category-tabs/category-tabs.data'
 import { CategoryTabs } from '@/components/category-tabs/CategoryTabs'
 import { SearchBar } from '@/components/store/SearchBar'
-import {
-	storeCourseCards,
-	storeModulCards,
-} from '@/components/store/store.data'
 import { StoreSection } from '@/components/store/StoreSection'
 import { ThemedSafeAreaView } from '@/components/theme/ThemedSafeAreaView'
 import { Heading } from '@/components/ui/heading/Heading'
+import { storeTabs } from '@/data/category-tabs.data'
+import { storeCourseCards, storeModulCards } from '@/data/store.data'
 import { useColor } from '@/hooks/useColor'
 import { Ionicons } from '@expo/vector-icons'
 import { Link, useRouter } from 'expo-router'
@@ -32,7 +29,7 @@ export default function StoreScreen() {
 	return (
 		<ThemedSafeAreaView>
 			<Heading
-				leftChildren={<SearchBar />}
+				leftChildren={<SearchBar maxWidth='70%' />}
 				rightChildren={buttons()}
 				underline
 			/>

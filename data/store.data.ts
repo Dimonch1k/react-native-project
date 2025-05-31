@@ -1,4 +1,4 @@
-import { StoreCardProps } from './StoreCard'
+import { StoreCardProps } from '@/components/store/StoreCard'
 
 export const storeModulCards: StoreCardProps[] = [
 	{

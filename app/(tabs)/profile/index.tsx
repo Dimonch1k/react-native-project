@@ -52,7 +52,9 @@ export default function ProfileScreen() {
 
 			<View style={styles.profileContainer}>
 				<Image
-					source={{ uri: 'https://placehold.co/55x55' }}
+					source={{
+						uri: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=56&h=56&fit=crop&crop=face',
+					}}
 					style={styles.avatar}
 				/>
 				<View>

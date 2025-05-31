@@ -1,6 +1,7 @@
 import { ThemedText } from '@/components/theme/ThemedText'
 import React from 'react'
 import {
+	DimensionValue,
 	Image,
 	ImageSourcePropType,
 	StyleSheet,
@@ -14,6 +15,7 @@ type ButtonProps = {
 	ionicIcon?: React.ReactNode
 	color?: string
 	backgroundColor?: string
+	width?: DimensionValue
 	onPress?: () => void
 }
 
@@ -23,11 +25,12 @@ export const Button: React.FC<ButtonProps> = ({
 	ionicIcon,
 	color,
 	backgroundColor,
+	width,
 	onPress,
 }) => {
 	return (
 		<TouchableOpacity
-			style={[styles.button, { backgroundColor }]}
+			style={[styles.button, { backgroundColor, width }]}
 			activeOpacity={0.7}
 			onPress={onPress}
 		>

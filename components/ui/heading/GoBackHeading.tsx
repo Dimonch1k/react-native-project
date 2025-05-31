@@ -1,37 +1,21 @@
 import { Heading } from '@/components/ui/heading/Heading'
 import { useColor } from '@/hooks/useColor'
 import { Ionicons } from '@expo/vector-icons'
+import { useRouter } from 'expo-router'
 import React from 'react'
 import { Pressable, View } from 'react-native'
 
 interface GoBackHeadingProps {
 	title?: string
 	rightChildren?: React.ReactNode
-	customFallback?: string
 }
 
-export function GoBackHeading({
-	title,
-	rightChildren,
-	customFallback,
-}: GoBackHeadingProps) {
+export function GoBackHeading({ title, rightChildren }: GoBackHeadingProps) {
 	const { textColor } = useColor()
-
-	const handleGoBack = () => {
-		if (customFallback) {
-			const { useRouter } = require('expo-router')
-			const router = useRouter()
-
-			if (router.canGoBack()) {
-				router.back()
-			} else {
-				router.replace(customFallback)
-			}
-		}
-	}
+	const { back } = useRouter()
 
 	const goBackButton = () => (
-		<Pressable onPress={handleGoBack}>
+		<Pressable onPress={() => back()}>
 			<View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
 				<Ionicons name='arrow-back' size={24} color={textColor} />
 			</View>

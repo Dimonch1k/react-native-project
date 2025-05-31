@@ -1,5 +1,5 @@
-import { loginButtons } from '@/components/auth/login-buttons.data'
 import { Button } from '@/components/ui/buttons/Button'
+import { loginButtons } from '@/data/login-buttons.data'
 
 import { useRouter } from 'expo-router'
 import React from 'react'

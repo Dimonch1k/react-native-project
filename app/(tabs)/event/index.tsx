@@ -1,13 +1,13 @@
 import { Ionicons } from '@expo/vector-icons'
 import { Link } from 'expo-router'
 import React from 'react'
-import { FlatList, StyleSheet } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 
 import { EventCard } from '@/components/event/event-card/EventCard'
-import { eventCardsData } from '@/components/event/event-cards.data'
 import { ThemedSafeAreaView } from '@/components/theme/ThemedSafeAreaView'
 import { FilterButtons } from '@/components/ui/buttons/FilterButton'
 import { Heading } from '@/components/ui/heading/Heading'
+import { eventCardsData } from '@/data/event-cards.data'
 import { useColor } from '@/hooks/useColor'
 
 export default function EventScreen() {
@@ -32,30 +32,34 @@ export default function EventScreen() {
 
 			<FilterButtons filters={filters} />
 
-			<FlatList
-				data={eventCardsData}
-				keyExtractor={item => item.id}
-				contentContainerStyle={styles.listContainer}
-				showsVerticalScrollIndicator={false}
-				renderItem={({ item }) => (
-					<EventCard
-						isOnline={item.isOnline}
-						title={item.title}
-						isFree={item.isFree}
-						newPrice={item.newPrice}
-						oldPrice={item.oldPrice}
-						participants={item.participants}
-						date={item.date}
-						image={item.image}
-					/>
-				)}
-			/>
+			<ScrollView showsVerticalScrollIndicator={false}>
+				<View style={{ flexDirection: 'column', paddingBottom: 32 }}>
+					<View style={styles.listContainer}>
+						{eventCardsData.map(card => (
+							<EventCard
+								isOnline={card.isOnline}
+								title={card.title}
+								isFree={card.isFree}
+								newPrice={card.newPrice}
+								oldPrice={card.oldPrice}
+								participants={card.participants}
+								date={card.date}
+								image={card.image}
+							/>
+						))}
+					</View>
+				</View>
+			</ScrollView>
 		</ThemedSafeAreaView>
 	)
 }
 
 const styles = StyleSheet.create({
 	listContainer: {
-		gap: 16,
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		justifyContent: 'space-between',
+		rowGap: 8,
+		columnGap: 8,
 	},
 })

@@ -1,14 +1,15 @@
-import { forumData } from '@/components/forum/forum.data'
+import { DiscussionModal } from '@/components/forum/DiscussionModal'
 import { ForumButton } from '@/components/forum/ForumButton'
 import { ForumCard } from '@/components/forum/ForumCard'
 import { ThemedSafeAreaView } from '@/components/theme/ThemedSafeAreaView'
 import { FilterButtons } from '@/components/ui/buttons/FilterButton'
 import { Heading } from '@/components/ui/heading/Heading'
+import { forumData } from '@/data/forum.data'
 import { useColor } from '@/hooks/useColor'
 import { useThemeStore } from '@/stores/theme.store'
 import { Ionicons } from '@expo/vector-icons'
 import { Link } from 'expo-router'
-import { ScrollView, View } from 'react-native'
+import { ScrollView, StyleSheet, View } from 'react-native'
 
 export default function ForumsScreen() {
 	const { textColor } = useColor()
@@ -36,20 +37,14 @@ export default function ForumsScreen() {
 
 	const forumButtons = () => (
 		<View style={{ flexDirection: 'row', gap: 8 }}>
-			<ForumButton
-				icon='pencil'
-				iconSize={16}
-				primaryColor='#FF3A46'
-				borderColor='#FF9399'
-				title='Add Discussion'
-				backgroundColor={isLight ? '#FFEBEC' : '#22252A'}
-			/>
+			<DiscussionModal />
+
 			<ForumButton
 				icon='chevron-forward-outline'
 				iconSize={16}
 				primaryColor='#1668E3'
 				borderColor='#7BAEFD'
-				title='Join Member'
+				title='Joined'
 				backgroundColor={isLight ? '#E9F1FE' : '#22252A'}
 			/>
 		</View>
@@ -63,21 +58,27 @@ export default function ForumsScreen() {
 
 			<FilterButtons filters={filters} />
 
-			<ScrollView
-				style={{
-					marginTop: 16,
-					paddingVertical: 8,
-					paddingBottom: 16,
-					paddingHorizontal: 2,
-				}}
-				showsVerticalScrollIndicator={false}
-			>
-				<View style={{ flexDirection: 'column', gap: 32 }}>
-					{forumData.map((item, index) => (
-						<ForumCard key={index} {...item} />
-					))}
+			<ScrollView showsVerticalScrollIndicator={false}>
+				<View style={{ flexDirection: 'column', gap: 32, paddingBottom: 32 }}>
+					<View style={styles.listContainer}>
+						{forumData.map((item, index) => (
+							<ForumCard key={index} {...item} />
+						))}
+					</View>
 				</View>
 			</ScrollView>
 		</ThemedSafeAreaView>
 	)
 }
+
+const styles = StyleSheet.create({
+	listContainer: {
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		justifyContent: 'space-between',
+		rowGap: 8,
+		columnGap: 8,
+		paddingHorizontal: 2,
+		paddingVertical: 2,
+	},
+})

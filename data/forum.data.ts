@@ -1,4 +1,3 @@
-// forum.data.ts
 export const forumData = [
 	{
 		timeAgo: '23 minutes ago',

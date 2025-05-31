@@ -1,9 +1,9 @@
-import { courseTabs } from '@/components/category-tabs/category-tabs.data'
 import { CategoryTabs } from '@/components/category-tabs/CategoryTabs'
-import { courseCards } from '@/components/store/store.data'
 import { StoreCard } from '@/components/store/StoreCard'
 import { ThemedSafeAreaView } from '@/components/theme/ThemedSafeAreaView'
 import { GoBackHeading } from '@/components/ui/heading/GoBackHeading'
+import { courseTabs } from '@/data/category-tabs.data'
+import { courseCards } from '@/data/store.data'
 import { useColor } from '@/hooks/useColor'
 import { Ionicons } from '@expo/vector-icons'
 import { Link } from 'expo-router'
@@ -30,7 +30,7 @@ export default function StoreScreen() {
 			<CategoryTabs tabs={courseTabs} />
 
 			<ScrollView showsVerticalScrollIndicator={false}>
-				<View style={{ flexDirection: 'column', gap: 32, paddingBottom: 32 }}>
+				<View style={{ flexDirection: 'column', paddingBottom: 32 }}>
 					<View style={styles.listContainer}>
 						{courseCards.map(card => (
 							<StoreCard

@@ -1,9 +1,10 @@
 import { ThemedSafeAreaView } from '@/components/theme/ThemedSafeAreaView'
+import { Button } from '@/components/ui/buttons/Button'
 import { Heading } from '@/components/ui/heading/Heading'
 import { useColor } from '@/hooks/useColor'
 import { Ionicons } from '@expo/vector-icons'
 
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 import { View } from 'react-native'
 
 export default function HomeScreen() {
@@ -24,14 +25,14 @@ export default function HomeScreen() {
 		<ThemedSafeAreaView>
 			<Heading title={'Home'} underline rightChildren={buttons()} />
 
-			{/* <Button
+			<Button
 				title='Transaction History'
-				color='#fff'
+				color={textColor}
 				backgroundColor={backgroundTab}
 				onPress={() => {
-					router.push('/transaction')
+					router.push('/(tabs)/transaction-history')
 				}}
-			/> */}
+			/>
 		</ThemedSafeAreaView>
 	)
 }

@@ -10,6 +10,7 @@ interface ForumButtonProps {
 	borderColor: string
 	title: string
 	backgroundColor?: string
+	onPress?: () => void
 }
 
 export function ForumButton({
@@ -19,11 +20,10 @@ export function ForumButton({
 	borderColor,
 	title,
 	backgroundColor = 'transparent',
+	onPress,
 }: ForumButtonProps) {
 	return (
-		<TouchableOpacity
-			onPress={() => console.log(`${title} button was pressed`)}
-		>
+		<TouchableOpacity onPress={onPress}>
 			<View style={[styles.container, { borderColor, backgroundColor }]}>
 				<View style={[styles.iconCircle, { backgroundColor: primaryColor }]}>
 					<Ionicons name={icon} size={iconSize} color='#fff' />

@@ -104,6 +104,7 @@ export function EventCard({
 
 const styles = StyleSheet.create({
 	card: {
+		width: '100%',
 		alignSelf: 'stretch',
 		paddingBottom: 10,
 		borderRadius: 10,
