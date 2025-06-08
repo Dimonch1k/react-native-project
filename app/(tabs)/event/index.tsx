@@ -37,6 +37,7 @@ export default function EventScreen() {
 					<View style={styles.listContainer}>
 						{eventCardsData.map(card => (
 							<EventCard
+								key={card.id}
 								isOnline={card.isOnline}
 								title={card.title}
 								isFree={card.isFree}

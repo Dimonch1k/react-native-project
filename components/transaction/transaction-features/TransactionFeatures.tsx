@@ -1,10 +1,13 @@
 import { transactionFeatures } from '@/data/transaction-history.data'
 import { useColor } from '@/hooks/useColor'
+import { useThemeStore } from '@/stores/theme.store'
 import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { SvgXml } from 'react-native-svg'
 
 export const TransactionFeatures = () => {
-	const { backgroundTab } = useColor()
+	const { backgroundTab, textColor } = useColor()
+	const isLight = useThemeStore(state => state.isLight)
 
 	const [selectedIndex, setSelectedIndex] = useState(0)
 
@@ -12,50 +15,49 @@ export const TransactionFeatures = () => {
 		<View
 			style={[
 				styles.container,
-				{ backgroundColor: backgroundTab, borderColor: backgroundTab },
+				{
+					backgroundColor: isLight ? '#EAF2FF' : backgroundTab,
+					borderColor: isLight ? '#C5DCFF' : '#292C32',
+				},
 			]}
 		>
-			{transactionFeatures.map((feature, index) => (
-				<TouchableOpacity
-					key={index}
-					style={styles.feature}
-					onPress={() => setSelectedIndex(index)}
-					activeOpacity={0.7}
-				>
-					<View
-						style={[
-							styles.icon,
-							{
-								backgroundColor:
-									selectedIndex === index ? feature.color : '#EAF2FF',
-								borderColor:
-									selectedIndex === index ? feature.color : 'transparent',
-								borderWidth: selectedIndex === index ? 2 : 0,
-							},
-						]}
+			{transactionFeatures.map((feature, index) => {
+				const iconColor = selectedIndex === index ? '#ffffff' : '#166AE3'
+				const coloredIcon = feature.icon.replace(
+					/fill="[^"]*"/g,
+					`fill="${iconColor}"`
+				)
+
+				return (
+					<TouchableOpacity
+						key={index}
+						style={styles.feature}
+						onPress={() => setSelectedIndex(index)}
 					>
-						<Text
+						<View
 							style={[
-								styles.emoji,
-								{ opacity: selectedIndex === index ? 1 : 0.6 },
+								styles.icon,
+								{
+									backgroundColor:
+										selectedIndex === index ? '#1668E3' : 'transparent',
+								},
 							]}
 						>
-							{feature.icon}
+							<SvgXml xml={coloredIcon} width={24} height={24} />
+						</View>
+						<Text
+							style={[
+								styles.label,
+								{
+									color: textColor,
+								},
+							]}
+						>
+							{feature.label}
 						</Text>
-					</View>
-					<Text
-						style={[
-							styles.label,
-							{
-								color: selectedIndex === index ? feature.color : '#8B9DC3',
-								fontWeight: selectedIndex === index ? '600' : '500',
-							},
-						]}
-					>
-						{feature.label}
-					</Text>
-				</TouchableOpacity>
-			))}
+					</TouchableOpacity>
+				)
+			})}
 		</View>
 	)
 }
@@ -63,19 +65,11 @@ export const TransactionFeatures = () => {
 const styles = StyleSheet.create({
 	container: {
 		padding: 16,
-		borderRadius: 12,
 		borderWidth: 1,
+		borderRadius: 12,
 		flexDirection: 'row',
 		justifyContent: 'space-between',
 		alignItems: 'center',
-		shadowColor: '#000',
-		shadowOffset: {
-			width: 0,
-			height: 2,
-		},
-		shadowOpacity: 0.1,
-		shadowRadius: 4,
-		elevation: 3,
 	},
 	feature: {
 		width: 50,
@@ -91,14 +85,7 @@ const styles = StyleSheet.create({
 		marginBottom: 6,
 		alignItems: 'center',
 		justifyContent: 'center',
-		shadowColor: '#000',
-		shadowOffset: {
-			width: 0,
-			height: 1,
-		},
-		shadowOpacity: 0.1,
-		shadowRadius: 2,
-		elevation: 2,
+		overflow: 'hidden',
 	},
 	emoji: {
 		fontSize: 20,

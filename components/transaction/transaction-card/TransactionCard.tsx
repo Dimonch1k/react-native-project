@@ -1,7 +1,15 @@
 import { StyledText } from '@/components/ui/text/Text'
 import { useColor } from '@/hooks/useColor'
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import {
+	GestureResponderEvent,
+	Image,
+	StyleSheet,
+	Text,
+	TouchableOpacity,
+	View,
+} from 'react-native'
+import { SvgXml } from 'react-native-svg'
 
 export interface TransactionCardProps {
 	image: string
@@ -9,6 +17,7 @@ export interface TransactionCardProps {
 	title: string
 	subtitle: string
 	date: string
+	onPress?: (event: GestureResponderEvent) => void
 }
 
 export const TransactionCard: React.FC<TransactionCardProps> = ({
@@ -17,11 +26,17 @@ export const TransactionCard: React.FC<TransactionCardProps> = ({
 	title,
 	subtitle,
 	date,
+	onPress,
 }) => {
 	const { backgroundTab } = useColor()
 
+	const iconColor = '#ffffff'
+	const coloredIcon = icon.replace(/fill="[^"]*"/g, `fill="${iconColor}"`)
+
 	return (
-		<View
+		<TouchableOpacity
+			activeOpacity={0.8}
+			onPress={onPress}
 			style={[
 				styles.card,
 				{ backgroundColor: backgroundTab, borderColor: backgroundTab },
@@ -30,7 +45,7 @@ export const TransactionCard: React.FC<TransactionCardProps> = ({
 			<View style={styles.imageContainer}>
 				<Image source={{ uri: image }} style={styles.image} />
 				<View style={styles.iconContainer}>
-					<Text style={[styles.emoji]}>{icon}</Text>
+					<SvgXml xml={coloredIcon} width={12} height={12} />
 				</View>
 			</View>
 
@@ -39,17 +54,15 @@ export const TransactionCard: React.FC<TransactionCardProps> = ({
 				<Text style={styles.subtitle}>{subtitle}</Text>
 				<Text style={styles.date}>Order Date : {date}</Text>
 			</View>
-		</View>
+		</TouchableOpacity>
 	)
 }
 
 const styles = StyleSheet.create({
 	card: {
 		padding: 10,
-		backgroundColor: '#14171F',
 		borderRadius: 10,
 		borderWidth: 1,
-		borderColor: '#292C32',
 		flexDirection: 'row',
 		gap: 10,
 		shadowColor: '#000',
@@ -64,6 +77,7 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		backgroundColor: '#C5DCFF',
 		position: 'relative',
+		overflow: 'hidden',
 	},
 	image: {
 		width: 105,
@@ -80,6 +94,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#1668E3',
 		justifyContent: 'center',
 		alignItems: 'center',
+		overflow: 'hidden',
 	},
 	emoji: {
 		fontSize: 12,
